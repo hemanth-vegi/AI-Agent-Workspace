@@ -191,3 +191,38 @@ def fibonacci_fast(n: int) -> int:
     # entry is 0, so no special case is required.
     powered = _matrix_power([[1, 1], [1, 0]], n)
     return powered[0][1]
+
+
+def is_even(n: int) -> bool:
+    """Return ``True`` if ``n`` is even, ``False`` otherwise.
+
+    A number is even when it is divisible by 2 with no remainder, i.e. the
+    least-significant bit of its binary representation is 0. This is checked
+    cheaply with the bitwise AND ``n & 1``, which avoids the division-based
+    modulo operation and works uniformly for positive, negative, and zero
+    integers (Python's arbitrary-precision ints have a well-defined low bit).
+
+    Args:
+        n: An integer to test for evenness.
+
+    Returns:
+        ``True`` if ``n`` is even, ``False`` if ``n`` is odd.
+
+    Raises:
+        TypeError: If ``n`` is not an integer.
+
+    Examples:
+        >>> is_even(0)
+        True
+        >>> is_even(1)
+        False
+        >>> is_even(2)
+        True
+        >>> is_even(-3)
+        False
+        >>> is_even(-4)
+        True
+    """
+    if not isinstance(n, int):
+        raise TypeError(f"n must be an integer, got {type(n).__name__}")
+    return (n & 1) == 0
